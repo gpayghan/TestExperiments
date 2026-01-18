@@ -109,6 +109,7 @@ namespace UnitTestProject1.SeleniumTutorial
             //Accept the alert popup generated after certain action on UI.
             chromedriver.SwitchTo().Alert().Accept();
             chromedriver.SwitchTo().Alert().Dismiss();
+            chromedriver.SwitchTo().Alert().SetAuthenticationCredentials("UserName", "Password");
 
             ////Switch to Frame. Three ways. Frame Name, Frame Index and IwebElement for particular frame
             chromedriver.SwitchTo().Frame("");
@@ -153,7 +154,7 @@ namespace UnitTestProject1.SeleniumTutorial
             
             OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(chromedriver);
             //action.KeyDown(object, "SHIFT");
-            action.KeyDown( Keys.Shift);
+            action.KeyDown( Keys.Space);
             action.SendKeys("ab");
             action.Build().Perform();
             string pageTitle= chromedriver.Title;
@@ -187,6 +188,25 @@ namespace UnitTestProject1.SeleniumTutorial
                 .MoveByOffset(0, 250)
                 .Release()
                 .Perform();
+        }
+
+        [TestMethod]
+        public void SelectElement()
+        {
+            IWebElement slider = chromedriver.FindElement(By.Id("slider"));
+
+
+            SelectElement select=new SelectElement(slider);
+
+            select.SelectByValue("Value");
+            select.SelectByText("Text");
+            select.SelectByIndex(0);// 0 being first in list
+
+            var selectedOption = select.SelectedOption;
+
+            var allOptions = select.Options;
+
+
         }
 
         public IWebElement ExpandShadowDOM(IWebElement webElement=null ,params By[] elements)

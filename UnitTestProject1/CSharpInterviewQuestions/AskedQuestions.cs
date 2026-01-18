@@ -1,7 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace UnitTestProject1.CSharpInterviewQuestions
 {
@@ -464,6 +465,174 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
         }
 
+        [TestMethod]
+        public void AnagramStrings()
+        {
+            string s1 = "earth";
+
+            string s2 = "heart";
+            bool isAnagram = true;
+
+            if (s1.Length != s2.Length)
+            {
+                isAnagram = false;
+            }
+            else
+            {
+                foreach (char item in s1)
+                {
+                    if (!s2.Contains(item.ToString()))
+                    {
+                        isAnagram = false;
+                        break;
+                    }
+                    else
+                    {
+                        int indeOfChar = s2.IndexOf(item);
+                        var charArry = s2.ToCharArray();
+
+                        charArry[indeOfChar] = ' ';
+                        s2 = string.Concat(charArry);
+                        //s2=s2.Replace(item, ' ');
+                    }
+                }
+                Console.WriteLine("Is Anagram :" + isAnagram);
+
+            }
+
+        }
+        [TestMethod]
+        public void IsAnagram()
+        {
+            string s1 = "earth";
+
+            string s2 = "heatt";
+
+            string s3 = s1 + s2;
+
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
+            List<string> list = new List<string>();
+
+            foreach (char item in s3)
+            {
+                if (!keyValuePairs.ContainsKey(item))
+                    keyValuePairs.Add(item, 1);
+                else
+                    keyValuePairs[item]++;
+            }
+            var pairs = keyValuePairs.Where(x => x.Value % 2 == 1);
+            if (pairs.Count() > 0)
+                Console.WriteLine("Not Anagram");
+            else
+                Console.WriteLine("Anagram");
+        }
+
+
+        [TestMethod]
+        public void IsAnaGramTester()
+        {
+            string s1 = "listen";
+            string s2 = "silent";
+            bool isAnagram = true;
+
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
+
+            foreach (char ch in s1)
+            {
+                if (keyValuePairs.ContainsKey(ch))
+                    keyValuePairs[ch]++;
+                else
+                    keyValuePairs[ch] = 1;
+            }
+
+            foreach (char ch in s2)
+            {
+                if (keyValuePairs.ContainsKey(ch))
+                    keyValuePairs[ch]--;
+            }
+
+            isAnagram = keyValuePairs.All(x => x.Value == 0);
+
+            Console.Write(isAnagram);
+        }
+
+        [TestMethod]
+        public void FindFirstNonRepeatingCharacterFromString()
+        {
+            string str = "aaabbcdd";
+            string output = "";
+            int[] charCount = new int[256];
+
+            foreach (char c in str)
+            {
+                if (c < 256)
+                    charCount[c]++;
+            }
+
+            foreach (char c in charCount)
+            {
+                if (c < 256 && charCount[c] == 1)
+                    output = c.ToString();
+            }
+
+            Console.WriteLine(output);
+
+        }
+
+        //Reverse each words in string
+        [TestMethod]
+        public void ReversEachWordInString()
+        {
+            string str
+                = "";
+            string outputstring = "";
+            if (string.IsNullOrWhiteSpace(str))
+                outputstring= str;
+
+            var stack = new Stack<string>();
+            string[] words = str.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in words)
+            {
+                stack.Push(word);
+            }
+
+            var result = new StringBuilder();
+            while (stack.Count > 0)
+            {
+                result.Append(stack.Pop());
+                if (stack.Count > 0)
+                    result.Append(" ");
+            }
+
+            outputstring= result.ToString();
+
+        }
+
+        [TestMethod]
+        public void FindNonRepeatingCharacterDictionary()
+        {
+
+            string str = "aaabbcdd";
+            string output = "";
+
+            Dictionary<char, int> freq = new Dictionary<char, int>();
+
+            foreach (var ch in str)
+            {
+                if (freq.ContainsKey(ch))
+                    freq[ch]++;
+                else freq[ch] = 1;
+            }
+
+            foreach (var pair in freq)
+            {
+                if (pair.Value == 1)
+                    output = pair.Key.ToString();
+            }
+
+            Console.WriteLine(output);
+        }
 
         [TestMethod]
         public void Method_Paramters_In_C_Sharp_Value_Parameters()

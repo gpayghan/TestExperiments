@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
- 
+using System.Threading;
+
 namespace SeleniumAutomation
 {
    public class CommonActions
@@ -18,7 +19,7 @@ namespace SeleniumAutomation
             try
             {
                 TestSetup.driver.FindElement(webElement).SendKeys(value);
-            }catch(Exception ex)
+            }catch(Exception)
             {
 
             }
@@ -77,7 +78,7 @@ namespace SeleniumAutomation
         //Maximize/Minimize Browser Window
         public void MaxiMizeWindow()
         {
-            TestSetup.driver.Manage().Window().Maximize();
+            TestSetup.driver.Manage().Window.Maximize();
         }
 
         //Takes ScreenShot
@@ -98,10 +99,10 @@ namespace SeleniumAutomation
             {
                 return webElement.Displayed;
 
-            }catch(NoSuchElementException ex)
+            }catch(NoSuchElementException)
             {
                 return false;
-            }catch(Exception e)
+            }catch(Exception)
             {
                 return false;
             }
@@ -120,6 +121,7 @@ namespace SeleniumAutomation
         //How to Hover using selenium
         public static void Hover(IWebElement element)
         {
+            
             Actions action = new Actions(TestSetup.driver);
             action.MoveToElement(element).Perform();
         }
@@ -144,8 +146,14 @@ namespace SeleniumAutomation
             //or Use below to go back to the default window
             TestSetup.driver.SwitchTo().DefaultContent();
 
+            TestSetup.driver.SwitchTo().Frame(0);//index, name, element
+
+            TestSetup.driver.SwitchTo().Alert().SendKeys(Keys.Enter);
+
+            TestSetup.driver.SwitchTo().Alert().SetAuthenticationCredentials("UserName","Password");
+
             //Or Get the current handel before doing the action
-            var beforePopUp= TestSetup.driver.CurrentWindowHandle;
+            var beforePopUp = TestSetup.driver.CurrentWindowHandle;
             //And now do some operation switch to last window and then switch back to above handel as
             TestSetup.driver.SwitchTo().Window(beforePopUp);
         }
@@ -157,8 +165,30 @@ namespace SeleniumAutomation
             //wait.Until(driver1 => ((IJavaScriptExecutor)TestSetup.driver)
             //.ExecuteScript("return document.readyState").Equals("complete"));
             wait.Until(wd => ((IJavaScriptExecutor)wd).ExecuteScript("return document.readystate").Equals("complete"));
+            wait.Until(d => d.Title == "");
+            wait.Until(d => d.Url == "");
+
 
             TestSetup.driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
+        }
+
+        public static void ExplicitWait()
+        {
+            //Use JavaScript to wait until the page has loaded
+            var wait = new WebDriverWait(TestSetup.driver, TimeSpan.FromSeconds(30))
+            { PollingInterval = TimeSpan.FromSeconds(1)};
+            //wait.Until(driver1 => ((IJavaScriptExecutor)TestSetup.driver)
+            //.ExecuteScript("return document.readyState").Equals("complete"));
+            wait.Until(wd => ((IJavaScriptExecutor)wd).ExecuteScript("return document.readystate").Equals("complete"));
+            wait.Until(d => d.Title == "");
+            wait.Until(d => d.Url == "");
+
+            wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("")));
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("")));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("")));
+
+            //
         }
 
     }

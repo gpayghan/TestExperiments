@@ -95,7 +95,6 @@ namespace SeleniumAutomation
         [TestMethod]
         public void Time_Out_On_Page_Load()
         {
-
             //Setting up negative timeout results in indefinite timeout. As shown below it will wait for page to load for indefinite time
             TestSetup.driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(-1);
             TestSetup.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/Login.html");
