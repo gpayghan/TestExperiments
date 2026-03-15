@@ -22,7 +22,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             }
 
         }
-        
+
         public class SomeClass : BaseAbstractClass
         {
         }
@@ -37,7 +37,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
         public class OneMoreclass : BaseAbstractClass
         {
-            public  void AbstractMethod()
+            public void AbstractMethod()
             {
                 Console.WriteLine("OneMOre class implemenataion");
             }
@@ -45,7 +45,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
         enum Gender
         {
-            Male=5,
+            Male = 5,
             Female,
             Unknown
 
@@ -56,7 +56,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
         {
             Console.WriteLine(Gender.Male);
 
-          int[] values=( int[] ) Enum.GetValues(typeof(Gender));
+            int[] values = (int[])Enum.GetValues(typeof(Gender));
             Console.Write("Values from enums");
             foreach (var val in values)
             {
@@ -71,8 +71,8 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             }
         }
 
-        [TestMethod,TestCategory("sdad")]
-        
+        [TestMethod, TestCategory("sdad")]
+
         public void Session_14_Virtual_Method_In_C_Sharp()
         {
             //An abstract class has a default implementation for a method.
@@ -113,13 +113,13 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             int temporaryPlaceHolder = num;
             int finalNumber = 0;
             int remainder = 0;
-            while(num>0)
+            while (num > 0)
             {
                 remainder = num % 10;
 
                 finalNumber = finalNumber * 10 + remainder;
 
-                num = num /10;
+                num = num / 10;
             }
 
             Console.WriteLine(temporaryPlaceHolder == finalNumber);
@@ -132,7 +132,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             string palindrome = "abcba";
             string revStr = "";
             //First Reverse the string and compare it with actual string
-            for (int i = palindrome.Length-1; i >=0; i--)
+            for (int i = palindrome.Length - 1; i >= 0; i--)
             {
                 revStr += palindrome[i];//.ToString();
             }
@@ -148,7 +148,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
             bool isPlaindrome = false;
 
-            while(palindrome.Length>0)
+            while (palindrome.Length > 0)
             {
                 if (palindrome.Length == 1)
                 {
@@ -166,7 +166,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                 palindrome = palindrome.Substring(1, palindrome.Length - 2);
             }
 
-            Console.WriteLine("Is Palindrome"+isPlaindrome);
+            Console.WriteLine("Is Palindrome" + isPlaindrome);
         }
 
         [TestMethod]
@@ -180,7 +180,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
         {
             if (str.Length <= 1)
                 return true;
-           else if (str[0] != str[str.Length - 1])
+            else if (str[0] != str[str.Length - 1])
                 return false;
             else
                 return IsPalindrome(str.Substring(1, str.Length - 2));
@@ -193,10 +193,10 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             int abc = 1234556;
             int sum = 0;
 
-            while(abc>0)
+            while (abc > 0)
             {
                 sum += abc % 10;
-                abc = abc/10;
+                abc = abc / 10;
             }
             Console.WriteLine(sum);
         }
@@ -204,24 +204,24 @@ namespace UnitTestProject1.CSharpInterviewQuestions
         [TestMethod]
         public void Pattern_1()
         {
-            int k =1 ;
+            int k = 1;
 
             int z = 6;
             for (int i = 1; i < 6; i++)
             {
-                for (int t = z; t>=1; t--)
+                for (int t = z; t >= 1; t--)
                 {
 
                     Console.Write(" ");
-                    
+
                 }
 
-                for (int j = 1; j <=i; j++)
+                for (int j = 1; j <= i; j++)
                 {
                     //if (i != j)
                     //    Console.Write(" ");
                     //else
-                       Console.Write(k++);
+                    Console.Write(k++);
                     //if (j == i)
                     //    break;
 
@@ -242,7 +242,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                     Console.Write(" ");
 
                 //loop to print stars
-                for (int t = 1; t <= i ; t++)
+                for (int t = 1; t <= i; t++)
                     Console.Write("*");
                 Console.WriteLine();
             }
@@ -270,34 +270,34 @@ namespace UnitTestProject1.CSharpInterviewQuestions
         public void Misc_Find_Number_Of_Occurances_Of_Characters_In_Strings()
         {
             string str = "WWW.goggle.com";
-            while(str.Length>0)
+            while (str.Length > 0)
             {
                 int count = 0;
 
-                Console.Write(str[0] +":\t");
+                Console.Write(str[0] + ":\t");
                 for (int i = 0; i < str.Length; i++)
                 {
                     if (str[0] == str[i])
                         count++;
                 }
                 Console.WriteLine(count);
-                str = str.Replace(str[0].ToString(),string.Empty);
+                str = str.Replace(str[0].ToString(), string.Empty);
             }
             //Yes this is working now.
             Console.WriteLine("\n*****Using LINQ***************\n");
 
             str = "WWW.goggle.com";
 
-            var response =  str.GroupBy(c => c)
-                        
-                        .Select(c=>new { character=c.Key, Count=c.Count()}) ;
+            var response = str.GroupBy(c => c)
+
+                        .Select(c => new { character = c.Key, Count = c.Count() });
 
             foreach (var item in response)
             {
-                Console.WriteLine($"{item.character  }:\t {item.Count}");
+                Console.WriteLine($"{item.character}:\t {item.Count}");
             }
         }
-       [TestMethod]
+        [TestMethod]
         public void Session_13_Reverse_Each_Word_In_String()
         {
             //split the input string using single space as seperator. Split() method returns a string array whcihc contains the each word of input string.
@@ -305,7 +305,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             //Join method converts the striung array into a string
             string inputstring = "One Two Three Four";
 
-            var reversedString= string.Join(" ",inputstring.Split(' ').Select(x => new String(x.Reverse().ToArray())));
+            var reversedString = string.Join(" ", inputstring.Split(' ').Select(x => new String(x.Reverse().ToArray())));
 
             Console.WriteLine(reversedString);
 
@@ -313,7 +313,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             string temp = "";
             string revStr = "";
 
-            foreach (char  ch in inputstring)
+            foreach (char ch in inputstring)
             {
                 if (ch != ' ')
                     temp = ch + temp;
@@ -323,7 +323,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                     temp = "";
                 }
             }
-            Console.WriteLine(revStr+temp);
+            Console.WriteLine(revStr + temp);
 
             revStr = "";
             temp = "";
@@ -357,7 +357,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
             int maxDivisor = num / 2;
 
-            for (int i = 2; i <= maxDivisor; i++) 
+            for (int i = 2; i <= maxDivisor; i++)
             {
                 if (num % i == 0)
                     factors.Add(i);
@@ -381,7 +381,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             //The finally block execution stops at the point where exception is thrown.
             //If finally block is being executed  after an exception has occurred in the try block , and that exception is not handled  and if finally block throws an exception 
             //Then original exception occurred in try block is lost
-            try { Hello(); }catch(Exception ex) { }
+            try { Hello(); } catch (Exception ex) { }
 
         }
         public void Hello()
@@ -428,7 +428,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
         public class SavingsCustomer : Customer
         {
-            public override  void Print()
+            public override void Print()
             {
                 Console.WriteLine("SavingsCustomer Customer ");
             }
@@ -440,7 +440,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             //Question- Without creating new array give me the even and odd number arrays
             int[] arr1 = { 1, 2, 3, 4, 5, 6 };
 
-            int[] arr2 = { 7, 8, 9, 10 ,12,11};
+            int[] arr2 = { 7, 8, 9, 10, 12, 11 };
 
             //First merge two arrays as follows.
 
@@ -451,17 +451,14 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                 arr1[arr1.Length + i + 1] = arr2[i];
             }
 
-            
-            for (int i = 0; i < arr1.Length+arr2.Length; i++)
+
+            for (int i = 0; i < arr1.Length + arr2.Length; i++)
             {
                 if (arr1[i] % 2 == 0)
                     continue;
                 else
                     arr2[i] = arr1[i];
             }
-
-           
-
 
         }
 
@@ -501,6 +498,32 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             }
 
         }
+
+        //ZyWave
+        [TestMethod]
+        public void FindMaximumSumOfConsecuteNumberOfWindowN()
+        {
+
+            int[] array = { 10, 9, 3, 4, 5, 6, 7 };
+
+            int window = 3;
+
+            int previousSum = array.Take(3).Sum();
+
+            int highestSum = previousSum;
+            for (int i = window; i < array.Length; i++)
+            {
+                int sum = previousSum + array[i] - array[i - window];
+                if (sum > highestSum)
+                {
+                    highestSum = sum;
+                }
+                previousSum = sum;
+            }
+
+            Console.Write("Highest Sum " + highestSum);
+        }
+
         [TestMethod]
         public void IsAnagram()
         {
@@ -520,6 +543,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                 else
                     keyValuePairs[item]++;
             }
+            bool isanagram= keyValuePairs.All(y => y.Value % 2 == 0);
             var pairs = keyValuePairs.Where(x => x.Value % 2 == 1);
             if (pairs.Count() > 0)
                 Console.WriteLine("Not Anagram");
@@ -579,6 +603,38 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
         }
 
+
+        [TestMethod]
+        public void FindFirstNonRepeatingCharacterFromString_SimpleLoop()
+        {
+            string str = "aaabbbecdd";
+            string output = str[0].ToString();
+
+            for (int i = 1; i < str.Length; i++)
+            {
+
+                if (str[i] == str[i - 1])
+                {
+                    continue;
+                }
+                else
+                {
+                    if (str[i] == str[i + 1])
+                    {
+                        continue;
+                    }
+                    output = str[i].ToString();
+                    break;
+
+                }
+
+            }
+
+
+            Console.WriteLine(output);
+
+        }
+
         //Reverse each words in string
         [TestMethod]
         public void ReversEachWordInString()
@@ -587,7 +643,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                 = "";
             string outputstring = "";
             if (string.IsNullOrWhiteSpace(str))
-                outputstring= str;
+                outputstring = str;
 
             var stack = new Stack<string>();
             string[] words = str.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
@@ -605,7 +661,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
                     result.Append(" ");
             }
 
-            outputstring= result.ToString();
+            outputstring = result.ToString();
 
         }
 
@@ -644,16 +700,16 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             //PassByValue method will make copy of i and then operate on it.
             Console.WriteLine(i);
 
-            
+
             int k = 90;
             // int k; will result in  error. you need to initilize ref parameter before passing it to method
             PassByReferanceMethod(ref k);
             Console.WriteLine(k);
             //Out Paramter
 
-            int  Total = 0;
+            int Total = 0;
             int Product;//Note this doesnot give ANY ERROR
-            Calculate(10, 20,out Total,out Product);
+            Calculate(10, 20, out Total, out Product);
 
             Console.WriteLine("Sum=" + Total + "\n" + "Product=" + Product);
 
@@ -662,7 +718,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
             ParamsMethood();//No error even if we dont pass any value.
             //Also you dont need to create an array if you us Params as shown below
-            Console.WriteLine("Using Params Sum is "+ParamsMethood(1,2));
+            Console.WriteLine("Using Params Sum is " + ParamsMethood(1, 2));
 
             //I cannot do this. It says no overlaod that takes in two arguements.
             //To Call below method I have to use the Interger array
@@ -670,7 +726,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             int[] numArray = new int[2];
             numArray[0] = 12;
             numArray[1] = 12;
-           Console.WriteLine(MethodWithntegerArrayAsParameter(numArray));
+            Console.WriteLine(MethodWithntegerArrayAsParameter(numArray));
 
         }
 
@@ -678,13 +734,13 @@ namespace UnitTestProject1.CSharpInterviewQuestions
         {
             a = 10;
         }
-        
+
         public void PassByReferanceMethod(ref int a)
         {
             a = 10;
         }
 
-        public int Calculate(int FN,int SN,out int Total,out int Product)
+        public int Calculate(int FN, int SN, out int Total, out int Product)
         {
             Total = FN + SN;
             Product = FN * SN;
@@ -702,7 +758,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             return sum;
         }
 
-        public int MethodWithntegerArrayAsParameter( int[] intarray)
+        public int MethodWithntegerArrayAsParameter(int[] intarray)
         {
             int sum = 0;
             foreach (var item in intarray)
@@ -720,7 +776,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
             //Order of Execution is
             //static fields==> Static constructor=> instance constructors
             StaticExample ex1 = new StaticExample();
-            
+
         }
 
 
@@ -731,11 +787,11 @@ namespace UnitTestProject1.CSharpInterviewQuestions
 
         }
     }
-    internal  class StaticExample
+    internal class StaticExample
     {
         static string Name = "Gitesh";
         static int Radius;
-       
+
         static StaticExample()
         {
             Radius = 10;
@@ -757,7 +813,7 @@ namespace UnitTestProject1.CSharpInterviewQuestions
         }
     }
 
-    class A2:A1
+    class A2 : A1
     {
         public override void Print()
         {
